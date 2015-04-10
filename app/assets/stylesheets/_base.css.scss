@@ -1,0 +1,8 @@
+@import "compass";
+@import "compass/reset";
+
+@mixin bg-image($name) {
+  image: url("/images/#{$name}.png");
+  repeat: no-repeat;
+  overflow: hidden;
+}
