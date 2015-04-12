@@ -1,8 +1,28 @@
 @import "compass";
 @import "compass/reset";
 
-@mixin bg-image($name) {
-  image: url("/images/#{$name}.png");
-  repeat: no-repeat;
+$main-dark-color: rgb(41, 41, 41);
+$main-light-color: #F8F8F8;
+
+
+@mixin bg-image($name, $bool) {
+  @if $bool == "yes" {
+    background: url("/images/#{$name}.png") no-repeat center center fixed;
+  } @else if $bool == "no" {
+    background: url("/images/#{$name}.png");
+  }
   overflow: hidden;
+}
+
+@mixin padding-both-sides($padding) {
+  padding-left: $padding;
+  padding-right: $padding;
+}
+
+@mixin center-div() {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
 }

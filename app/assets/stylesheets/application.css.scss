@@ -21,22 +21,71 @@
 @import "bootstrap";
 @import "base";
 
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+// Make animation visibile of hidden beforehand
+.animated { visibility: visible !important; }
 
 /////// WELCOME PAGE ///////
-.welcome-wrapper {
-  width: 100vw;
-  height: 100vh;
-
-}
-
-// Main logo
-.logo-wrapper, .logo {
-  width: 320px;
-  height: 160px;  
-}
-.logo {
-  background: {
-    @include bg-image("logo");
+#welcome-wrapper {
+  #welcome-bg {
+    position: absolute;
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    @include opacity(0.7);
+    @include bg-image("background", "yes");
+    @include background-size(cover);
   }
-  @include background-size(contain);
+
+  // Main logo
+  .logo-wrapper, .logo {
+    position: absolute;
+    z-index: 2;
+    width: 300px;
+    height: 150px;  
+  }
+  .logo {
+    @include bg-image("logo", "no");
+    @include background-size(contain);
+  }
+
+  // Welcome page typed out messages
+  #welcome-sentences, #search-sentences {
+    text-align: center;
+    z-index: 2;
+    display: inline-block;
+    border: solid 2px $main-dark-color;
+    @include opacity(0.7);
+    background-color: $main-dark-color;
+    height: 70px;
+    line-height: 70px;
+    color: $main-light-color;
+    top: 35%;
+    width: 55%;
+    @include border-radius(5px);
+    @include center-div();
+    @include padding-both-sides(25px);
+    #sentences, .typed-cursor {
+      z-index: 3;
+      font-size: 35px;
+      font-weight: 600;
+    }
+    input {
+      @include opacity(0.7);
+      padding: none;
+      width: 100%;
+      text-align: center;
+      background: none;
+      border: none;
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}
+.typed-cursor{
+  display: none;
 }

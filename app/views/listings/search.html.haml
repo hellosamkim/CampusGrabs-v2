@@ -1,0 +1,11 @@
+/ Search starts here
+.search_wrapper
+  / Display search results
+  .total_search_results
+    Search Results for
+    = "\"" + @search_query + "\" :"
+    %span{:style => "color: rgba(255, 153, 0, 1);"} 
+      = @search_count
+  .listings_wrapper#search        
+    = render 'show_all_listings'
+  
