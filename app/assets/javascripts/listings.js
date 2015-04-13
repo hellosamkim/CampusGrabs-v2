@@ -2,7 +2,8 @@ $(function(){
   hide_fadein('#welcome-wrapper');
   animate_css_animations();
   typesentence_search();
-  $('.logo').css({'visibility': 'hidden'});
+  hidden_for_animate('.logo');
+  hidden_for_animate('.login form');
   setTimeout('typesentence()', 1000);
 
 });
@@ -24,8 +25,15 @@ function hide_fadein(e) {
   $(e).css({'opacity':0}).animate({'opacity':1})
 };
 
+function hidden_for_animate(e) {
+  $(e).css({'visibility': 'hidden'});
+}
 function animate_css_animations() {
   setTimeout("$('.logo').addClass('animated bounceInDown')", 500);
+
+  $('.login h2').hover(function() {
+    $('.login form').addClass('animated slideInUp');
+  });
 };
 
 function typesentence_search() {
@@ -33,6 +41,7 @@ function typesentence_search() {
   $('#welcome-sentences')
     .on('click', function(){
       $('#search-sentences').fadeIn();
+      $('#search-sentences input').focus();
       $('#welcome-sentences > #sentences').fadeOut();
     })
 };

@@ -42,7 +42,7 @@ body {
 
   // Main logo
   .logo-wrapper, .logo {
-    position: absolute;
+    position: relative;
     z-index: 2;
     width: 300px;
     height: 150px;  
@@ -51,9 +51,12 @@ body {
     @include bg-image("logo", "no");
     @include background-size(contain);
   }
-
-  // Welcome page typed out messages
+}
+// Welcome page typed out messages
+section.text-animation {
+  height: 30vh;
   #welcome-sentences, #search-sentences {
+    position: absolute;
     text-align: center;
     z-index: 2;
     display: inline-block;
@@ -68,11 +71,13 @@ body {
     @include border-radius(5px);
     @include center-div();
     @include padding-both-sides(25px);
+    @include no-focus();
     #sentences, .typed-cursor {
       z-index: 3;
       font-size: 35px;
       font-weight: 600;
     }
+    // Search bar on typed messages 
     input {
       @include opacity(0.7);
       padding: none;
@@ -80,12 +85,48 @@ body {
       text-align: center;
       background: none;
       border: none;
-      &:focus {
-        outline: none;
-      }
     }
   }
+  .typed-cursor{
+    display: none;
+  }
 }
-.typed-cursor{
-  display: none;
+section.user-auth {
+  .login {
+    @include center-div();
+    bottom: 0.5%;
+    h2 {
+      color: $main-light-color;
+      font-size: 1.2rem;
+    }
+  }
+  .login, .get-started {
+    font-weight: 600;
+    z-index: 3;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    width: 80%;
+    @include no-focus();
+    h2 {
+      margin-bottom: 10px;
+    }
+  }
+  .get-started {
+    color: $main-dark-color;
+    border: solid;
+    width: 130px;
+    height: 50px;
+    line-height: 45px;
+    @include transition-duration(0.3s);
+    &:hover {
+      text-decoration: none;
+      cursor: pointer;
+      color: $main-light-color;
+      opacity: 0.8;
+      background-color: lighten($main-dark-color, 3%);
+      border-color: lighten($main-dark-color, 10%);
+    }
+  }
 }
