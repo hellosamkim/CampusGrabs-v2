@@ -27,11 +27,12 @@ function hide_fadein(e) {
 
 function hidden_for_animate(e) {
   $(e).css({'visibility': 'hidden'});
-}
+};
+
 function animate_css_animations() {
   setTimeout("$('.logo').addClass('animated bounceInDown')", 500);
-
-  $('.login h2').hover(function() {
+  setTimeout("$('.get-started').addClass('animated pulse infinite')", 1500);
+  $('.login h3').hover(function() {
     $('.login form').addClass('animated slideInUp');
   });
 };

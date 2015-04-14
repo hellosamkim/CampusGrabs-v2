@@ -30,6 +30,7 @@ body {
 
 /////// WELCOME PAGE ///////
 #welcome-wrapper {
+  height: 100vh;
   #welcome-bg {
     position: absolute;
     z-index: 1;
@@ -52,13 +53,14 @@ body {
     @include background-size(contain);
   }
 }
+
 // Welcome page typed out messages
 section.text-animation {
   height: 30vh;
   #welcome-sentences, #search-sentences {
     position: absolute;
     text-align: center;
-    z-index: 2;
+    z-index: 3;
     display: inline-block;
     border: solid 2px $main-dark-color;
     @include opacity(0.7);
@@ -68,15 +70,16 @@ section.text-animation {
     color: $main-light-color;
     top: 35%;
     width: 55%;
-    @include border-radius(5px);
+    @include border-radius(1px);
     @include center-div();
     @include padding-both-sides(25px);
-    @include no-focus();
+    @include no-focus(none);
     #sentences, .typed-cursor {
       z-index: 3;
       font-size: 35px;
       font-weight: 600;
     }
+
     // Search bar on typed messages 
     input {
       @include opacity(0.7);
@@ -91,42 +94,46 @@ section.text-animation {
     display: none;
   }
 }
+
+// Welcome User login/ Get Started
 section.user-auth {
-  .login {
-    @include center-div();
-    bottom: 0.5%;
-    h2 {
-      color: $main-light-color;
-      font-size: 1.2rem;
+  a {
+    &:hover, &:focus {
+      text-decoration: none;
     }
   }
   .login, .get-started {
+    position: absolute;
     font-weight: 600;
     z-index: 3;
-    position: relative;
-    margin-left: auto;
-    margin-right: auto;
     text-align: center;
     width: 80%;
-    @include no-focus();
-    h2 {
+    bottom: 0.5%;
+    @include center-div();
+    @include no-focus($main-light-color);
+  }
+  .login { 
+    h3 {
+      @include center-div();
+      @include border-radius(50px);
+      @include button-boxed($main-dark-color, $main-light-color, 20, 120px, 30px);
+      color: $main-light-color;
+      font-size: 0.9rem;
       margin-bottom: 10px;
+    }
+    .input-group-addon {
+      background-color: lighten($main-dark-color, 3%);
+      color: darken($main-light-color, 3%);
+      border-color: lighten($main-dark-color, 3%);
+    }
+    input {
+      color: $main-light-color;
+      background: none; 
     }
   }
   .get-started {
+    position: relative;
     color: $main-dark-color;
-    border: solid;
-    width: 130px;
-    height: 50px;
-    line-height: 45px;
-    @include transition-duration(0.3s);
-    &:hover {
-      text-decoration: none;
-      cursor: pointer;
-      color: $main-light-color;
-      opacity: 0.8;
-      background-color: lighten($main-dark-color, 3%);
-      border-color: lighten($main-dark-color, 10%);
-    }
+    @include button-boxed($main-light-color, $main-dark-color, 10, 130px, 50px);
   }
 }
