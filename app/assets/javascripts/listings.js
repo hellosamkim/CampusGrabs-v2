@@ -1,14 +1,12 @@
-$(function(){
-  hide_fadein('#welcome-wrapper');
+$(function () {
   animate_css_animations();
   typesentence_search();
-  hidden_for_animate('.logo');
-  hidden_for_animate('.login form');
+  $(document.body).css({'opacity':0}).animate({'opacity':1})
   setTimeout('typesentence()', 1000);
-
+  fixed_nav();
 });
 
-typesentence = function() {
+typesentence = function () {
   return $('#sentences').typed({
     strings: ['I want to buy a long board', 'I want to buy a laptop', 'I want to buy a textbook', 'I want to sell my homecoming tickets', 'Enter keyword here...'],
     typeSpeed: 110,
@@ -21,30 +19,52 @@ typesentence = function() {
   });
 };
 
-function hide_fadein(e) {
-  $(e).css({'opacity':0}).animate({'opacity':1})
-};
-
-function hidden_for_animate(e) {
+function hidden_for_animate (e) {
   $(e).css({'visibility': 'hidden'});
 };
 
-function animate_css_animations() {
+function animate_css_animations () {
+  hidden_for_animate('.logo');
+  hidden_for_animate('.login form');
   setTimeout("$('.logo').addClass('animated bounceInDown')", 500);
+  setTimeout("$('.logo').removeClass('bounceInDown')", 1600);
   setTimeout("$('.get-started').addClass('animated pulse infinite')", 1500);
-  $('.login h3').hover(function() {
+  $('.login h3').hover(function () {
     $('.login form').addClass('animated slideInUp');
   });
+  addRemoveAnimate('.logo', 'tada');
+
+  function addRemoveAnimate(e, animation) {
+    $(e).mouseenter(function (){
+      $(e).addClass("animated " + animation);
+      setTimeout(function () {
+        $(e).removeClass(animation);
+      }, 1600);
+    });
+  };
 };
 
-function typesentence_search() {
+function typesentence_search () {
   $('#search-sentences').fadeOut();
   $('#welcome-sentences')
-    .on('click', function(){
+    .on('click', function (){
       $('#search-sentences').fadeIn();
       $('#search-sentences input').focus();
       $('#welcome-sentences > #sentences').fadeOut();
     })
+};
+
+function fixed_nav () {
+  var e = $('.top-nav .links');
+  var clss = "nav-link-scrolled";
+
+  $(window).scroll(function () {
+    if ($(this).scrollTop() > 20) {
+      e.addClass(clss);
+    } else {
+      e.removeClass(clss);
+    }
+  });
 };
 
 // Action for mouseclick outside of search-sentence

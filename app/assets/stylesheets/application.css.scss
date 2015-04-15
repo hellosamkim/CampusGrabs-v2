@@ -28,6 +28,15 @@ body {
 // Make animation visibile of hidden beforehand
 .animated { visibility: visible !important; }
 
+// button transitions
+.login h3, .login input, .get-started {
+  @include transition-duration(0.2s);
+}
+
+.container {
+  @include padding-both-sides(0);
+}
+
 /////// WELCOME PAGE ///////
 #welcome-wrapper {
   height: 100vh;
@@ -40,23 +49,12 @@ body {
     @include bg-image("background", "yes");
     @include background-size(cover);
   }
-
-  // Main logo
-  .logo-wrapper, .logo {
-    position: relative;
-    z-index: 2;
-    width: 300px;
-    height: 150px;  
-  }
-  .logo {
-    @include bg-image("logo", "no");
-    @include background-size(contain);
-  }
+  @include logo(300px);
 }
 
-// Welcome page typed out messages
+// Welcome page typed messages
 section.text-animation {
-  height: 30vh;
+  height: 50vh;
   #welcome-sentences, #search-sentences {
     position: absolute;
     text-align: center;
@@ -80,7 +78,7 @@ section.text-animation {
       font-weight: 600;
     }
 
-    // Search bar on typed messages 
+    // Typed message search bar
     input {
       @include opacity(0.7);
       padding: none;
@@ -116,24 +114,93 @@ section.user-auth {
     h3 {
       @include center-div();
       @include border-radius(50px);
-      @include button-boxed($main-dark-color, $main-light-color, 20, 120px, 30px);
+      @include button-boxed(20, 120px, 30px);
+      @include button-boxed-hover($main-dark-color-2, $main-light-color, $main-light-color);
       color: $main-light-color;
       font-size: 0.9rem;
       margin-bottom: 10px;
     }
     .input-group-addon {
-      background-color: lighten($main-dark-color, 3%);
+      background-color: lighten($main-dark-color, 13%);
       color: darken($main-light-color, 3%);
-      border-color: lighten($main-dark-color, 3%);
+      border-color: lighten($main-dark-color, 13%);
     }
     input {
       color: $main-light-color;
       background: none; 
     }
+    input[type="submit"] {
+      &:hover {
+        background-color: lighten($main-dark-color, 3%);
+        border-color: lighten($main-dark-color, 3%);  
+      }
+    }
   }
   .get-started {
     position: relative;
     color: $main-dark-color;
-    @include button-boxed($main-light-color, $main-dark-color, 10, 130px, 50px);
+    background-color: rgba(255, 255, 255, 0.3);
+    @include button-boxed(10, 130px, 50px);
+    @include button-boxed-hover($main-light-color, $main-dark-color, $main-dark-color);
+  }
+}
+
+/////// INDEX PAGE ///////
+nav.top-nav {
+  background-color: $main-dark-color-2;
+  @include nav-container-size(80px);
+  .container {
+    @include logo(250px);
+    .logo-wrapper {
+      padding-top: 17px;
+    }
+    .links {
+      color: $main-light-color;
+      padding-top: 10px;
+      height: 80px;
+      position: fixed;
+      right: 10%;
+      text-align: center;
+      .login, .register {
+        @include transition-duration(0.2s);
+        @include opacity(0.6);
+        font-size: 0.9rem;
+        color: $main-orange-color;
+        border-bottom: 2px solid $main-dark-color-2;
+        display: inline-block;
+        padding: 3px;
+        &:hover {
+          @include opacity(1);
+          border-bottom: 2px solid $main-dark-color-2;
+          cursor: pointer;
+        }
+      }
+      .posting {
+        font-weight: 600;
+        padding: 10px 0;
+        background-color: $main-dark-color-2;
+        border: 2px solid $main-light-color;
+        display: block;
+        margin-top: 5px;
+        @include transition-duration(0.2s);
+        &:hover {
+          @include button-boxed-hover($main-dark-color-2, $main-light-color, $main-dark-color-2)
+        }
+      }
+    }
+  }
+}
+nav.main-nav {
+  background-color: $main-light-color;
+  @include box-shadow(lighten($main-dark-color-2, 40%) 0px 1px);
+  @include nav-container-size(45px);
+  .container {
+    @include box-shadow($main-dark-color);
+  }
+}
+
+section.main {
+  p {
+    margin-bottom: 30px;
   }
 }
