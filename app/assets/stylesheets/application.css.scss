@@ -21,6 +21,7 @@
 @import "bootstrap";
 @import "base";
 
+
 body {
   font-family: 'Open Sans', sans-serif;
 }
@@ -69,9 +70,10 @@ section.text-animation {
     top: 35%;
     width: 55%;
     @include border-radius(1px);
-    @include center-div();
+    @include center-div;
     @include padding-both-sides(25px);
     @include no-focus(none);
+    @include hover-pointer;
     #sentences, .typed-cursor {
       z-index: 3;
       font-size: 35px;
@@ -107,12 +109,12 @@ section.user-auth {
     text-align: center;
     width: 80%;
     bottom: 0.5%;
-    @include center-div();
+    @include center-div;
     @include no-focus($main-light-color);
   }
   .login { 
     h3 {
-      @include center-div();
+      @include center-div;
       @include border-radius(50px);
       @include button-boxed(20, 120px, 30px);
       @include button-boxed-hover($main-dark-color-2, $main-light-color, $main-light-color);
@@ -145,7 +147,9 @@ section.user-auth {
   }
 }
 
-/////// INDEX PAGE ///////
+/////// MAIN PAGES ///////
+
+// top nav abar
 nav.top-nav {
   background-color: $main-dark-color-2;
   @include nav-container-size(80px);
@@ -162,6 +166,8 @@ nav.top-nav {
       right: 10%;
       text-align: center;
       .login, .register {
+        font-family: $pt-sans;
+        font-weight: 700;
         @include transition-duration(0.2s);
         @include opacity(0.6);
         font-size: 0.9rem;
@@ -169,34 +175,106 @@ nav.top-nav {
         border-bottom: 2px solid $main-dark-color-2;
         display: inline-block;
         padding: 3px;
+        @include hover-pointer;
         &:hover {
           @include opacity(1);
           border-bottom: 2px solid $main-dark-color-2;
-          cursor: pointer;
         }
       }
       .posting {
-        font-weight: 600;
-        padding: 10px 0;
+        font-family: $roboto;
+        padding: 8px 0;
         background-color: $main-dark-color-2;
         border: 2px solid $main-light-color;
         display: block;
         margin-top: 5px;
         @include transition-duration(0.2s);
         &:hover {
-          @include button-boxed-hover($main-dark-color-2, $main-light-color, $main-dark-color-2)
+          @include button-boxed-hover($main-dark-color-2, lighten($main-light-color, 30%), $main-dark-color-2)
         }
       }
     }
   }
 }
+// second nav bar
 nav.main-nav {
   background-color: $main-light-color;
   @include box-shadow(lighten($main-dark-color-2, 40%) 0px 1px);
   @include nav-container-size(45px);
   .container {
     @include box-shadow($main-dark-color);
+    .search-bar {
+      @include no-focus($main-dark-color);
+      input#q {
+        padding-left: 15px;
+        margin-left: 15px;
+        width: 220px;
+        border-left: 1px solid lighten($main-dark-color-2, 50%);
+      }
+      .select-group, .submit-group {
+        width: 170px;
+        color: lighten($main-dark-color-2, 10%);
+        display: inline-block;
+        border-right: 1px solid lighten($main-dark-color-2, 50%);
+      }
+      .submit-group {
+        border: none;
+        input {
+          height: 43px;
+        }
+      }
+      .selection {
+        display: inline;
+        i {
+          margin-left: 3.5px;
+        }
+      }
+      input, select {
+        position: relative;
+        border: none;
+        font-family: $nunito;
+        height: 45px;
+        background-color: $main-light-color;
+        border-right: 1px solid lighten($main-dark-color-2, 50%);
+      }
+      select {
+        overflow: hidden;
+        color: #aaa;
+        height: 44px;
+        width: 150px;
+        @include appearance(none);
+        outline: none;
+        border-radius: 0px;
+        padding-left: 5px;
+        margin-left: -4px;
+      }
+      .select-group, select, input[type="submit"] {
+        @include hover-pointer;
+        opacity: 0.8;
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
   }
+  ::-webkit-input-placeholder {
+    @include search-input-ph
+  }
+  ::-moz-placeholder {
+    @include search-input-ph
+  } 
+  :-ms-input-placeholder {
+    @include search-input-ph
+  }
+}
+
+.search-bar-scrolled {
+  position: fixed;
+  left: 0;
+  top: 28px;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 section.main {

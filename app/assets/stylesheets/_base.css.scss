@@ -1,11 +1,20 @@
 @import "compass";
 @import "compass/reset";
 
+// color variables
 $main-dark-color: rgb(41, 41, 41);
 $main-dark-color-2: #555;
 $main-light-color: #F8F8F8;
 $main-orange-color: #FF9900;
 
+// font variables
+$roboto: 'Roboto', sans-serif;            // Sub font
+$open-sans: 'Open Sans', sans-serif;      // Main font      
+$pt-sans: 'PT Sans Narrow', sans-serif;   // Narrow font
+$lato: 'Lato', sans-serif;                // Sub font
+$nunito: 'Nunito', sans-serif;            // Sub font
+
+// background-image for div
 @mixin bg-image($name, $bool) {
   @if $bool == "yes" {
     background: url("/images/#{$name}.png") no-repeat center center fixed;
@@ -15,11 +24,13 @@ $main-orange-color: #FF9900;
   overflow: hidden;
 }
 
+// spacing with padding on each side
 @mixin padding-both-sides($padding) {
   padding-left: $padding !important;
   padding-right: $padding !important;
 }
 
+// center div with auto margins
 @mixin center-div() {
   left: 0;
   right: 0;
@@ -27,6 +38,7 @@ $main-orange-color: #FF9900;
   margin-right: auto;
 }
 
+// remove default focus color for forms
 @mixin no-focus($color) {
   input {
     opacity: 0.8;
@@ -36,11 +48,11 @@ $main-orange-color: #FF9900;
       -webkit-box-shadow: none;
       -moz-box-shadow: none;
       box-shadow: none;
-      border-color: $color;
     }
   }
 }
 
+// buttons
 @mixin button-boxed($lh, $w, $h) {
   border: solid;
   width: $w;
@@ -48,6 +60,7 @@ $main-orange-color: #FF9900;
   line-height: $h - ($h * ($lh / 100));
 }
 
+// button hover
 @mixin button-boxed-hover($text, $bg, $border) {
   &:hover {
     text-decoration: none;
@@ -59,6 +72,7 @@ $main-orange-color: #FF9900;
   }
 }
 
+// logo for welcome page and all pages
 @mixin logo($width){
   .logo-wrapper, .logo {
       float: left;
@@ -73,9 +87,21 @@ $main-orange-color: #FF9900;
   }
 }
 
+// nav containers
 @mixin nav-container-size($height){
   .container {
     height: $height;
     width: 80%;
   }
+}
+// nav container search input placeholder
+@mixin search-input-ph {
+  padding-top: 2px;
+  color: #aaa;
+}
+
+@mixin hover-pointer {
+    &:hover {
+      cursor: pointer;
+    }
 }

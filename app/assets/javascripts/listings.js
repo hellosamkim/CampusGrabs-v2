@@ -55,12 +55,15 @@ function typesentence_search () {
 };
 
 function fixed_nav () {
-  var e = $('.top-nav .links');
-  var clss = "nav-link-scrolled";
+  var e = $('.main-nav .container');
+  var clss = "search-bar-scrolled";
 
   $(window).scroll(function () {
-    if ($(this).scrollTop() > 20) {
+    if ($(this).scrollTop() > 40) {
       e.addClass(clss);
+      $('.main-nav .container form').css({'padding-left': '250px'})
+      $(".main-nav .container input").css({'border': '1px solid #d4d4d4'})
+      $(".main-nav .select-group").css({'border': '1px solid #d4d4d4'})
     } else {
       e.removeClass(clss);
     }
