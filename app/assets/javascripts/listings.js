@@ -4,6 +4,7 @@ $(function () {
   $(document.body).css({'opacity':0}).animate({'opacity':1})
   setTimeout('typesentence()', 1000);
   fixed_nav();
+  masonryProducts();
 });
 
 typesentence = function () {
@@ -59,24 +60,61 @@ function fixed_nav () {
   var clss = "search-bar-scrolled";
 
   $(window).scroll(function () {
-    if ($(this).scrollTop() > 40) {
+    if ($(this).scrollTop() > 50) {
       e.addClass(clss);
-      $('.main-nav .container form').css({'padding-left': '250px'})
-      $(".main-nav .container input").css({'border': '1px solid #d4d4d4'})
-      $(".main-nav .select-group").css({'border': '1px solid #d4d4d4'})
+      $('.main-nav .container form').css({'padding-left': '250px'});
+      $(".main-nav .container input").css({'border-top': '1px solid #d4d4d4'});
+      $(".main-nav .container .select-group").css({'border-top': '1px solid #d4d4d4'});
+      $(".main-nav .container input[type='submit']").css({'height': '46px'});
     } else {
       e.removeClass(clss);
     }
   });
 };
 
+function border_pick (e, side, b) {
+  var cide = 'border-bottom';
+  if (b === 'yes') {
+    $('#{e}').css({cide: '1px solid #d4d4d4'});
+  }
+}
+ 
 // Action for mouseclick outside of search-sentence
 $(document).mouseup(function (e)
 {
-  if (!$("#search-sentences").is(e.target)
-    && $("#search-sentences").has(e.target).length === 0)
-  {
+  if (!$("#search-sentences").is(e.target) && $("#search-sentences").has(e.target).length === 0) {
     $("#search-sentences").fadeOut();
     $("#welcome-sentences > #sentences").fadeIn();
   }
 });
+
+function masonryProducts() {
+  var $container = $('#listing-wrapper')
+  $container.imagesLoaded(function() {
+    $container.masonry({
+      itemSelector: '.listing', 
+      isFitWidth: true,
+      gutterWidth: 10
+    });
+  });
+
+  $container.infinitescroll({
+    navSelector : '.page',
+    nextSelector : '#next-page',
+    itemSelector : '.box',
+    loading : {
+      finshedMsg: 'No more products to load.',
+      img: 'http://i.imgur.com/WxlCYpH.gif'
+    }
+  },
+  function (newElements) {
+    var $newElems = $(newElements).css({opacity: 0}); 
+    var nextPageNav = $(this).find('.page');
+    $('.page').replaceWith(nextPageNav);
+    $newElems.imagesLoaded(function(){
+      $newElems.animate({opacity: 1});
+      $container.masonry('appended', $newElems, true);
+    });
+  }
+  );  
+};

@@ -6,13 +6,18 @@ $main-dark-color: rgb(41, 41, 41);
 $main-dark-color-2: #555;
 $main-light-color: #F8F8F8;
 $main-orange-color: #FF9900;
+$main-red-color: #db7070;
 
 // font variables
 $roboto: 'Roboto', sans-serif;            // Sub font
 $open-sans: 'Open Sans', sans-serif;      // Main font      
 $pt-sans: 'PT Sans Narrow', sans-serif;   // Narrow font
-$lato: 'Lato', sans-serif;                // Sub font
+$raleway: 'Raleway', sans-serif;            // Sub font
 $nunito: 'Nunito', sans-serif;            // Sub font
+
+// other variables
+$border-style: 1px solid lighten($main-dark-color-2, 50%);
+
 
 // background-image for div
 @mixin bg-image($name, $bool) {
@@ -77,7 +82,7 @@ $nunito: 'Nunito', sans-serif;            // Sub font
   .logo-wrapper, .logo {
       float: left;
       position: relative;
-      z-index: 2;
+      z-index: 1000;
       width: $width;
       height: $width / 2;  
   }
@@ -91,7 +96,6 @@ $nunito: 'Nunito', sans-serif;            // Sub font
 @mixin nav-container-size($height){
   .container {
     height: $height;
-    width: 80%;
   }
 }
 // nav container search input placeholder
@@ -100,8 +104,22 @@ $nunito: 'Nunito', sans-serif;            // Sub font
   color: #aaa;
 }
 
+// When hover, makes cursor a pointer
 @mixin hover-pointer {
     &:hover {
       cursor: pointer;
     }
+}
+
+// main box-shadow design
+@mixin box-style-shadow($color) { 
+  -moz-box-shadow: (lighten($color, 55%) 0px 2px); 
+  -webkit-box-shadow: (lighten($color, 55%) 0px 2px); 
+  box-shadow: (lighten($color, 55%) 0px 2px); 
+}
+
+@mixin main-bg-cover {
+  background-color: $main-light-color;
+  border: $border-style;
+  @include box-style-shadow($main-dark-color-2);
 }
