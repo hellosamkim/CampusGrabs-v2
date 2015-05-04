@@ -220,6 +220,9 @@ nav.main-nav {
   @include nav-container-size(45px);
   .container {
     .search-bar {
+      #search-query { 
+      padding-left: 250px;
+      }
       @include no-focus($main-dark-color);
       input#q {
         height: 46px;
@@ -229,11 +232,16 @@ nav.main-nav {
         border-left: $border-style;
         border-bottom: $border-style;
       }
+      .select-group {
+        background-color: $main-light-color;
+        margin-left: -4px;
+        padding-left: 4px;
+      }
       .select-group, .submit-group {  
         width: 170px;
         color: lighten($main-dark-color, 13%);
-        margin-left: -4px;
         display: inline-block;
+        margin-left: -7px;
         border-right: $border-style;
         border-bottom: $border-style;
       }
@@ -272,7 +280,7 @@ nav.main-nav {
       }
       .select-group, select, input[type="submit"] {
         @include hover-pointer;
-        opacity: 0.8;
+        opacity: 0.97;
         &:hover {
           opacity: 1;
         }
@@ -356,7 +364,8 @@ nav.main-nav {
   }
   .listings-menu {
     text-align: center;
-    h2 {
+    @include no-focus(#fff);
+    button {
       padding: 12px;
       text-align: center;
       color: $main-orange-color;
@@ -370,8 +379,8 @@ nav.main-nav {
       }
     }
   }
+  // list of listings
   .show-listings {
-    margin-top: 17px;
     margin-left: auto;
     margin-right: auto;
     @include main-bg-cover;
@@ -379,16 +388,58 @@ nav.main-nav {
     overflow: auto;
     margin-bottom: 30px;
     clear: both;
+    // listings wrapper with masonry & infinite scroll
     #listing-wrapper.transitions-enabled.infinite-scroll {
       @include center-div;
       margin-top: 15px;
       .listing {
-        width: 240px;
+        width: 220px;
         margin-bottom: 15px;
       }  
+    } 
+    .listing-hover {
+      width: 100%;
+      height: 100%;
+      background-color: #f3f3f3;
     }
-    h2 {
-      font-size: 10px;
+  }
+  // each listings
+  .listing {
+    border: 1px solid $main-dark-color-2;
+    @include transition-duration(0.2s);
+    &:hover {
+      background-color: $main-dark-color;
+    }
+    img {
+      @include transition-duration(0.2s);
+      width: 100%;
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+    .title {
+      background-color: $main-dark-color-2;
+      color: $main-light-color;
+      text-align: center;
+      padding: 5px 0;
+    }
+    .price {
+      position: absolute;
+      font-family: $alegreya;
+      font-weight: 500;
+      background-color: lighten($main-red-color, 5);
+      color: $main-light-color;
+      font-size: 1.1rem;
+      top: 10px;
+      left: 0;
+      padding: 6px 9px;
+    }
+    .date {
+      position: absolute;
+      font-family: $alegreya;
+      font-size: 1rem;
+      top: 10px;
+      right: 0;
     }
   }
 }

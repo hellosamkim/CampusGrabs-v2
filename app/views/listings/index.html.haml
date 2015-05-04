@@ -11,12 +11,24 @@
     .line-break{style: "width: 80px; height: 3px;"}
     .listings-wrapper
       .listings-menu
-        %h2 Latest Ads
-        %h2 Popular Ads
-        %h2 Cheapest Ads
+        %button Latest Ads
+        %button Popular Ads
+        %button Cheapest Ads
       .show-listings
         #listing-wrapper.transitions-enabled.infinite-scroll.clearfix
           - @listings.each do |listing|  
-            .listing
-              %h2
-                = listing.title
+            = link_to listing_path(listing.id) do
+              .listing
+                .image
+                  - listing.images[0..0].each_with_index do |image|
+                    = image_tag image.picture.thumb.url, :class => "thumbs"
+                .title
+                  = listing.title
+                .price
+                  = number_to_currency(listing.price, :precision => 0)
+                .date
+                  = listing.created_at.strftime("%b %d")
+
+
+
+
