@@ -28,6 +28,15 @@
                   = number_to_currency(listing.price, :precision => 0)
                 .date
                   = listing.created_at.strftime("%b %d")
+        = paginate @listings
+%footer.social-feeds
+  .social
+    %h1 CONNECT WITH US
+    .line-break{style: "width: 120px; height: 3px;"}
+    %a{:href => "#", :class => "fa fa-twitter-square"}
+    %a{:href => "#", :class => "fa fa-facebook-square"}
+    %a{:href => "#", :class => "fa fa-instagram"}
+    %a{:href => "#", :class => "fa fa-google-plus-square"}
 
 
 

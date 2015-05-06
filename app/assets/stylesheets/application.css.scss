@@ -166,51 +166,14 @@ nav.top-nav {
   background-color: $main-dark-color-2;
   @include nav-container-size(80px);
   .container {
+    height: 50.5px;
     @include logo(250px);
     .logo-wrapper {
-      padding-top: 17px;
-    }
-    .links {
-      z-index: 5;
-      opacity: 0.9;
-      color: $main-light-color;
-      padding-top: 10px;
-      height: 80px;
-      position: fixed;
-      right: 10%;
-      text-align: center;
-      .login, .register {
-        font-family: $pt-sans;
-        font-weight: 700;
-        @include transition-duration(0.2s);
-        @include opacity(0.6);
-        font-size: 0.9rem;
-        color: $main-orange-color;
-        border-bottom: 2px solid $main-dark-color-2;
-        display: inline-block;
-        padding: 3px;
-        @include hover-pointer;
-        &:hover {
-          @include opacity(1);
-          border-bottom: 2px solid $main-dark-color-2;
-        }
-      }
-      .posting {
-        font-family: $roboto;
-        padding: 8px 0;
-        background-color: $main-dark-color-2;
-        border: 2px solid $main-light-color;
-        display: block;
-        margin-top: 5px;
-        @include transition-duration(0.2s);
-        &:hover {
-          @include button-boxed-hover($main-dark-color-2, lighten($main-light-color, 30%), $main-dark-color-2)
-        }
-      }
+      margin-top: -12px;
     }
   }
 }
-// second nav bar
+// main nav bar
 nav.main-nav {
   z-index: 6;
   position: relative;
@@ -220,9 +183,7 @@ nav.main-nav {
   @include nav-container-size(45px);
   .container {
     .search-bar {
-      #search-query { 
-      padding-left: 250px;
-      }
+      float: left;
       @include no-focus($main-dark-color);
       input#q {
         height: 46px;
@@ -241,7 +202,7 @@ nav.main-nav {
         width: 170px;
         color: lighten($main-dark-color, 13%);
         display: inline-block;
-        margin-left: -7px;
+        margin-left: -4px;
         border-right: $border-style;
         border-bottom: $border-style;
       }
@@ -286,6 +247,46 @@ nav.main-nav {
         }
       }
     }
+    .links {
+      float: right;
+      z-index: 5;
+      opacity: 0.9;
+      color: $main-light-color;
+      margin-top: -30px;
+      height: 80px;
+      position: fixed;
+      right: 10%;
+      text-align: center;
+      .login, .register {
+        font-family: $pt-sans;
+        font-weight: 700;
+        @include transition-duration(0.2s);
+        @include opacity(0.6);
+        font-size: 1rem;
+        color: $main-orange-color;
+        border-bottom: 2px solid $main-dark-color-2;
+        display: inline-block;
+        padding: 3px;
+        margin-bottom: 10px;
+        @include hover-pointer;
+        &:hover {
+          @include opacity(1);
+          border-bottom: 2px solid $main-dark-color-2;
+        }
+      }
+      .posting {
+        font-family: $roboto;
+        padding: 8px 0;
+        background-color: $main-dark-color-2;
+        border: 2px solid $main-light-color;
+        display: block;
+        margin-top: 5px;
+        @include transition-duration(0.2s);
+        &:hover {
+          @include button-boxed-hover($main-dark-color-2, lighten($main-light-color, 30%), $main-dark-color-2)
+        }
+      }
+    }
   }
   ::-webkit-input-placeholder {
     @include search-input-ph;
@@ -303,8 +304,6 @@ nav.main-nav {
   z-index: 1000;
   position: fixed;
   @include center-div;
-  top: 26px;
-
 }
 
 // Banner like display for all campuses/ locations
@@ -346,14 +345,12 @@ nav.main-nav {
 }
 
 // Main headings inside container
-.container {
-  h1 {
-    margin-top: 30px;
-    font-family: $raleway;
-    font-weight: 800;
-    font-size: 30px;
-    text-align: center;
-  }
+h1 {
+  margin-top: 30px;
+  font-family: $raleway;
+  font-weight: 800;
+  font-size: 30px;
+  text-align: center;
 }
 
 // Listings
@@ -405,10 +402,15 @@ nav.main-nav {
   }
   // each listings
   .listing {
-    border: 1px solid $main-dark-color-2;
+    border: solid $main-dark-color-2;
+    border-width: 3.2px 1.2px 0px 1.2px;
     @include transition-duration(0.2s);
     &:hover {
       background-color: $main-dark-color;
+      border-top: 3.2px solid $main-green-color;
+    }
+    &:hover > .date {
+      opacity: 0.9;
     }
     img {
       @include transition-duration(0.2s);
@@ -423,23 +425,56 @@ nav.main-nav {
       text-align: center;
       padding: 5px 0;
     }
+    .price, .date {
+      font-family: $alegreya;
+      color: $main-light-color;
+      padding: 4px 5px;
+      top: 0;
+    }
     .price {
       position: absolute;
-      font-family: $alegreya;
       font-weight: 500;
-      background-color: lighten($main-red-color, 5);
-      color: $main-light-color;
-      font-size: 1.1rem;
-      top: 10px;
+      background-color: lighten($main-orange-color, 5);
       left: 0;
-      padding: 6px 9px;
+      font-size: 1.5rem;
     }
     .date {
+      @include transition-duration(0.2s);
+      opacity: 0;
       position: absolute;
-      font-family: $alegreya;
-      font-size: 1rem;
-      top: 10px;
+      background-color: lighten($main-red-color, 5);
+      font-size: 0.97rem;
       right: 0;
+    }
+  }
+}
+
+.social {
+  .line-break {
+    margin-bottom: 20px;
+  }
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 20px;
+  a {
+    text-decoration: none;
+    opacity: 0.5;
+    @include transition-duration(0.2s);
+    @include padding-both-sides(2px);
+    &:hover {
+      opacity: 1;
+    }
+    &:nth-child(1) {
+      color: #55ACEE
+    }
+    &:nth-child(2) {
+      color: #3b5998;
+    }
+    &:nth-child(3) {
+      color: #3f729b;
+    }
+    &:nth-child(4) {
+      color: #dd4b39;
     }
   }
 }

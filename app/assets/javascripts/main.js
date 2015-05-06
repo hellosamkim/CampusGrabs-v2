@@ -59,16 +59,18 @@ function typesentence_search () {
 function fixed_nav () {
   var e = $('.main-nav .container');
   var clss = "search-bar-scrolled";
-  var sensitivity = 7;
+  var sensitivity = 5;
   var previousScroll = 0;
   $(window).scroll(function () {
-    if ($(this).scrollTop() > 50) {
+    if ($(this).scrollTop() > 0) {
       e.addClass(clss);
       $(".main-nav .container input").css({'border-top': '1px solid #d4d4d4'});
       $(".main-nav .container .select-group").css({'border-top': '1px solid #d4d4d4'});
       $(".main-nav .container input[type='submit']").css({'height': '46px'});
+      $(".search-bar").css({'margin-left':'250px'});
     } else {
       e.removeClass(clss);
+      $(".search-bar").css({'margin-left':'0px'});
     }
   });
   $(window).scroll(function(e) {
@@ -113,7 +115,7 @@ function masonryProducts() {
   $container.infinitescroll({
     navSelector : '.page',
     nextSelector : '#next-page',
-    itemSelector : '.box',
+    itemSelector : '.listing',
     loading : {
       finshedMsg: 'No more products to load.',
       img: 'http://i.imgur.com/WxlCYpH.gif'
@@ -128,4 +130,7 @@ function masonryProducts() {
       $container.masonry('appended', $newElems, true);
     });
   });  
+};
+
+function animationsAndEffects() {
 };
