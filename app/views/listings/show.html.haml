@@ -2,4 +2,18 @@
   = render 'topnav'
   = render 'mainnav'
 
-.listing.image
+.container
+  - @listing.images.each do |image|
+    = image_tag image.picture.thumb.url
+      
+  .title
+    %strong= @listing.title    
+  .description= @listing.description
+  .price
+    Price: $
+    = @listing.price
+  .campus
+    Campus:
+    = @listing.campus
+
+= render 'footer'

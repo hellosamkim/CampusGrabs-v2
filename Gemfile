@@ -22,11 +22,12 @@ gem 'faker', '~> 1.4.3'
 gem 'mini_magick', '~> 4.1.0'
 gem 'kaminari'
 gem 'jbuilder', '~> 2.0'
-  
+
 group :development do
   gem 'spring'
   gem 'web-console', '~> 2.0'
   gem 'sqlite3'
+  gem 'byebug'
 end
 
 group :production, :staging do
