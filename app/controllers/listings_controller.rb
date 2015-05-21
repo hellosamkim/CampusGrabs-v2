@@ -9,17 +9,25 @@ class ListingsController < ApplicationController
   def index
     # Display listings according to campus; defaults to user's pre-selected campus from registration
     @show_all = "#{params[:show_all]}"
+
     if current_user.present?
-      @listings = Listing.select_listing("campus", current_user.campus, @show_all).page params[:page]
+      @listings = Listing.select_listing\("campus", current_user.campus, @show_all).order('created_at DESC').page params[:page]
+      #@listings = Listing.select_listing("campus", current_user.campus, @show_all).page params[:page]
     else
-      @listings = Listing.all.order("created_at DESC").page params[:page]
+      @listings = Listing.all.order('created_at DESC').page params[:page]
+      #@listings = Listing.all.order("created_at DESC").page params[:page]
     end
-    @listings_count = @listings.flatten.count
+
+    #@listings.order("created_at DESC").page params[:page]
+    @listings_count = @listings.size
+    #@listings_count = @listings.flatten.count # LOL WHY
+
     if current_user.present?
+      #hmm?
       new
     end
   end
-  
+
   def show
   end
 
@@ -76,7 +84,7 @@ class ListingsController < ApplicationController
       @listings += Listing.select_listing("campus", @search_query)
       @listings += @user.to_a
       @listings = Kaminari.paginate_array(@listings).page(params[:page])
-    end    
+    end
 
     @search_count = @listings.count
   end
